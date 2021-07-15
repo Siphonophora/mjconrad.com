@@ -10,4 +10,6 @@ Subfolder post.
 Console.WriteLine("Hello Jekyll");
 ```
 
-![demo picture](/images/picture.png))
+![demo picture](/images/picture.png)
+
+How about `backtick` names
