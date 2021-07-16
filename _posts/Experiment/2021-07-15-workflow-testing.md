@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "Workflow Testing"
 date:   2021-07-15 18:35:32 -0400
 ---
