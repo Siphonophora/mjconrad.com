@@ -65,5 +65,7 @@ defaults:
       layout: single
       read_time: true
       comments: true
-      share: true
+      share: false
       related: true
+      show_date: true
+      words_per_minute: 150

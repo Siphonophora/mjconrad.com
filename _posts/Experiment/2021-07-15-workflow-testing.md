@@ -10,6 +10,10 @@ Subfolder post.
 Console.WriteLine("Hello Jekyll");
 ```
 
+``` sql
+select * from books
+```
+
 ![demo picture](/images/picture.png)
 
 How about `backtick` names

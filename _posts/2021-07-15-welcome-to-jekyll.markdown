@@ -2,7 +2,7 @@
 layout: single
 title:  "Welcome to Jekyll!"
 date:   2021-07-15 18:35:32 -0400
-categories: jekyll update
+tags: jekyll update
 ---
 
 HI
