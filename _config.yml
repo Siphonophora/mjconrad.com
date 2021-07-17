@@ -18,12 +18,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: Mike Conrad
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Taking notes in public since 2020.
+repository: "siphonophora/mjconrad.com"  
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
@@ -34,7 +33,12 @@ remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
-  - jekyll-include-cache    
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -56,16 +60,60 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
+# Site Author
+author:
+  name             : "Mike Conrad"
+  avatar           : "profile_pic.png"
+  bio              : "I’m a C# and TSQL developer who works in medical laboratory informatics. I have a particular interest in unit testing, software safety, developer productivity and code generation."
+  location         : "Boston, MA"
+  email            :
+  uri              :
+  bitbucket        :
+  codepen          :
+  dribbble         :
+  flickr           :
+  facebook         :
+  foursquare       :
+  github           : "siphonophora"
+  google_plus      :
+  keybase          :
+  instagram        :
+  lastfm           :
+  linkedin         :
+  pinterest        :
+  soundcloud       :
+  stackoverflow    :
+  steam            :
+  tumblr           :
+  twitter          :
+  vine             :
+  weibo            :
+  xing             :
+  youtube          :
+
 defaults:
   # _posts
   - scope:
-      path: ""
+      path: "_posts"
       type: posts
     values:
       layout: single
+      classes: wide
       read_time: true
       comments: true
       share: false
       related: true
       show_date: true
       words_per_minute: 150
+      author_profile: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+
+# Reading Files
+include:
+  - _pages      

@@ -17,6 +17,11 @@ group :jekyll_plugins do
   gem "github-pages", "~> 215"
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-include-cache"
+  gem "jekyll-paginate"
+  gem "jekyll-sitemap"
+  gem "jekyll-gist"
+  gem "jemoji"
+  gem "jekyll-algolia"
 end
 
 gem "jekyll-remote-theme"
