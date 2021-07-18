@@ -173,38 +173,8 @@ In practice, either of these tools should handle the vast majority of StyleCop w
 
 ### Stress Test File
 
-https://stackoverflow.com/questions/47656825/jekyll-line-numbers-are-not-starting-from-first-line
-``` csharp
-Console.WriteLine("");
-Console.WriteLine("");
-```
-
-``` csharp
-
-Console.WriteLine("Empty line Before");
-Console.WriteLine("");
-```
-
 ``` csharp
  
-Console.WriteLine("Space on line Before");
-Console.WriteLine("");
-```
-
-``` csharp
-Console.WriteLine("");
-Console.WriteLine("empty line before");
-
-```
-
-``` csharp
-Console.WriteLine("");
-Console.WriteLine("space on line after");
- 
-```
-
-``` csharp
-
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
