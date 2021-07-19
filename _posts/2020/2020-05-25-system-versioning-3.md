@@ -42,10 +42,10 @@ Drop table [dbo].[ExampleTableHistory]
 
 The output shows that only the *final state* of the transaction was recorded. We see the 'updated' value as if it was the value that was inserted. The deleted never really existed. 
 
-![](/images/2020/system-versioning-3/with-transaction.png)
+<img src="{{ site.url }}{{ site.baseurl }}/images/2020/system-versioning-3/with-transaction.png" width="700" alt="">
 
 Just for contrast, the results below are what we would get if the transaction was not used. 
 
-![](/images/2020/system-versioning-3/without-transaction.png)
+<img src="{{ site.url }}{{ site.baseurl }}/images/2020/system-versioning-3/without-transaction.png" width="800" alt="">
 
 One way to think about what is happening here is this. SQL Server will only ever move a row to the history table on update or delete, if that row existed before the transaction began. Additionally, it will only create one new version of a row within a transaction.

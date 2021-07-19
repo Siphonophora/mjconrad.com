@@ -66,7 +66,7 @@ Drop table [dbo].[ExampleTableHistory]
 
 This is the produced output:
 
-![](/images/2020/system-versioning-1/blog1.png)
+<img src="{{ site.url }}{{ site.baseurl }}/images/2020/system-versioning-1/blog1.png" width="1000" alt="">
 
 Lets take this one insert at a time. 
 * **Implicit** - The single insert uses an implicit transaction. Its SysStart is almost identical to the `InsertTime`, as expected. I ran this code a few times in order to generate output where they weren't exactly the same. This illustrates that even in the implicit transaction, the timestamp is generated before the row insert.

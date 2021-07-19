@@ -38,6 +38,6 @@ Drop table [dbo].[ExampleTableHistory]
 
 Results:
 
-![](/images/2020/system-versioning-4/noopupdate.png)
+<img src="{{ site.url }}{{ site.baseurl }}/images/2020/system-versioning-4/noopupdate.png" width="1000" alt="">
 
 Here we can see that the unchanged row was updated. We now have an *unnecessary* row which was generated in our audit trail. This behavior needs to be considered when designing updates for system versioned tables, as normal patterns for ETL or ORM updates could generate large volumes of History table data. In most cases, avoid these unnecessary updates is straight forward, but this is an area where simply enabling system versioning in an existing system could get you into trouble.
