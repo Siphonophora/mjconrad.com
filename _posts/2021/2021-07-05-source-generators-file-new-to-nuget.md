@@ -15,44 +15,57 @@ Screenshots and workflow were developed with `Visual Studio 2019 16.10.2`. I did
  
 Initially we are going to create two projects `AutoNotify` which will contain our generator and `ConsoleApp` which we will use to test that the generator is working properly. 
  
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_1.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_1.png" alt="">
+  <figcaption>Start by opening Visual Studio.</figcaption>
+</figure>  
 
-Start by opening Visual Studio.
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_2.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_2.png" alt="">
+  <figcaption>Create a new C# Class Library.</figcaption>
+</figure>  
 
-Create a new C# Class Library
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_3.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_3.png" alt="">
+  <figcaption>Named AutoNotify</figcaption>
+</figure>  
 
-Named AutoNotify
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_4.png)
+ <figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_4.png" alt="">
+  <figcaption>Target .NET Standard 2.0 and click 'Create'.</figcaption>
+</figure>  
 
-Target .NET Standard 2.0 and click 'Create'
  
 Go ahead and delete the `Class1.cs` file from the library.
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_5.png)
 
-Using the menu, choose File -> New -> Project. Choose a C# Console App
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_6.png)
 
-Leave the default name 'ConsoleApp' and click 'Next'
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_7.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_5.png" alt="">
+  <figcaption>Using the menu, choose File -> New -> Project. Choose a C# Console App.</figcaption>
+</figure>  
 
-For the console which is our client, we can use the Current .NET and click 'Create'.
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_8.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_6.png" alt="">
+  <figcaption>Leave the default name 'ConsoleApp' and click 'Next'</figcaption>
+</figure>  
 
-Right click `ConsoleApp` project and choose Add -> Project Reference. Add a reference to the `AutoNotify` project.
- 
-![](/images/2021/source-generators-file-new-to-nuget/file_new_9.png)
 
-Single click on the `ConsoleApp` project and edit the reference as shown.
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_7.png" alt="">
+  <figcaption>For the console which is our client, we can use the Current .NET and click 'Create'.</figcaption>
+</figure>  
+
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_8.png" alt="">
+  <figcaption>Right click `ConsoleApp` project and choose Add -> Project Reference. Add a reference to the `AutoNotify` project.</figcaption>
+</figure>  
+
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/file_new_9.png" alt="">
+  <figcaption>Single click on the `ConsoleApp` project and edit the reference as shown.</figcaption>
+</figure>  
+
  
 Our project reference isn't a normal reference. We need to tell Visual Studio that `AutoNotify` is an Analyzer (and therefore needs to run as part of Visual Studio's tooling) and also that we can't reference the assembly in our code. Because the Analyzer is just a piece of tooling, it won't be shipped with our application. We will be using the code it generates, but will not have a direct dependency on it within our code. **Note, you do NOT need to do this when you consume a NuGet package with a generator. This applies only when developing the generator.**
  
@@ -159,13 +172,16 @@ There is a little bit of a workaround you can do here. Even though this isn't a 
 1. Right click `AutoNotify` -> Properties -> Build Events
 2. Add `dotnet clean "$(SolutionDir)\ConsoleApp\ConsoleApp.csproj"` to the Pre-build event command line.
  
-![](/images/2021/source-generators-file-new-to-nuget/outofsync_without_api_change.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/outofsync_without_api_change.png" alt="">
+  <figcaption>Here our generator is out of sync with our generated code, but there are no API changes. Running the app produces no console output.</figcaption>
+</figure>   
 
-Here our generator is out of sync with our generated code, but there are no API changes. Running the app produces no console output.
- 
-![](/images/2021/source-generators-file-new-to-nuget/outofsync_without_api_change_after_clean.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/outofsync_without_api_change_after_clean.png" alt="">
+  <figcaption>After running the solution clean, our generator and generated code are still out of sync, but running the console app works as expected.</figcaption>
+</figure>   
 
-After running the solution clean, our generator and generated code are still out of sync, but running the console app works as expected.
  
 If you DO need to see the changes in the generated code, you still need to restart. So, I find this makes iterative development a little less tedious, but not that much.
  
@@ -175,29 +191,39 @@ If we need to change the API of our generated code or if we want to alter the co
  
 As an example, if we wanted to add "1" as a suffix to every property name (for some reason):
  
-![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_1.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/out_of_sync_1.png" alt="">
+  <figcaption>First we add that suffix. </figcaption>
+</figure> 
 
-First we add that suffix. 
- 
-![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_2.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/out_of_sync_2.png" alt="">
+  <figcaption>After building, notice how the Visual Studio Error List doesn't know about the errors, but we can see them in the build output. </figcaption>
+</figure> 
 
-After building, notice how the Visual Studio Error List doesn't know about the errors, but we can see them in the build output.
+
+
  
 When we build, we will get a build failure. This is only happening because of the pre-build clean step added above. Without the clean step we wouldn't have gotten the build failure, which I prefer as it is a reminder we have done something that necessitates a restart. 
  
-![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_3.png)
-
-As a reminder, our code is still out of date, that property should be `Name1`
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/out_of_sync_3.png" alt="">
+  <figcaption>As a reminder, our code is still out of date, that property should be `Name1`.</figcaption>
+</figure> 
  
 After we build the generator and restart visual studio, everything is back in sync. 
 
-![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_4_-_after_restart.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/out_of_sync_4_-_after_restart.png" alt="">
+  <figcaption>Now we get IntelliSense and Errors showing us the build problem.</figcaption>
+</figure> 
 
-Now we get IntelliSense and Errors showing us the build problem.
- 
-![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_5_-_fixed,_all_better.png)
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/out_of_sync_5_-_fixed,_all_better.png" alt="">
+  <figcaption>A quick fix to our naming and everything will build and run as expected.</figcaption>
+</figure> 
 
-A quick fix to our naming and everything will build and run as expected.
+
  
 Unfortunately, you are going to need to do this Build and restart pretty often at the moment.
  
@@ -221,10 +247,11 @@ What we can do is add a compiler directive which will launch a debugger that is 
             context.RegisterForSyntaxNotifications(() => new SyntaxReceiver());
         }
 ```
- 
-![](/images/2021/source-generators-file-new-to-nuget/choose_debugger.png)
 
-You will be prompted to pick a debugger. I have had issues when I didn't choose to create a new instance of Visual Studio, but you could try either option.
+<figure class="align-center">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/source-generators-file-new-to-nuget/choose_debugger.png" alt="">
+  <figcaption>You will be prompted to pick a debugger. I have had issues when I didn't choose to create a new instance of Visual Studio, but you could try either option.</figcaption>
+</figure> 
  
 *It isn't the topic of this post, but if there are issues your generator can run into which the developer using the generator needs to address, these can be communicated through compiler warnings or errors emitted by your generator. Regular users won't be able to debug your generator so you need to handle errors and communicate them in this way. It is very important that your generator doesn't crash the compilation, because your users won't have any way to tell what's happening.*
  
