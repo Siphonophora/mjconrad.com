@@ -27,7 +27,7 @@ public class FxCopTest
 }
 ```
 
-![](/images/2020/snippets-to-fix-fxcop-ca1062/CA1062.PNG)
+![](/images/2020/snippets-to-fix-fxcop-ca1062/ca1062.png)
 
 ### Snippets
 
@@ -38,7 +38,7 @@ To install the snippet in Visual Studio.
 2. Save the selected snippet with any name, and the `.snippet` file extension. 
 3. You may need to restart Visual Studio for the snippet to become available.
 
-![](/images/2020/snippets-to-fix-fxcop-ca1062/CodeSnippetManager.png)
+![](/images/2020/snippets-to-fix-fxcop-ca1062/codesnippetmanager.png)
 
 Usage for each snippet is the same:
 1. Type `nullguard` or enough of the name that IntelliSense selects `nullguard`.

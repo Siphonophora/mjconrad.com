@@ -70,7 +70,7 @@ In the first example the two transactions do not overlap in the rows they update
 
 As we can see, all the updates have occurred, but the order they happened, according to `SysStartTime` is obscured somewhat. Update 1 and 3 look like they happen at the same time, and before update 2. In most situations this won't create any problems, but its important to keep in mind if your workload has longer transactions.
 
-![](/images/2020/system-versioning-2/ConcurrentNonOverlappingOutput.PNG)
+![](/images/2020/system-versioning-2/concurrentnonoverlappingoutput.png)
 
 #### Overlapping Data
 

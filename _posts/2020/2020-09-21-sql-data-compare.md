@@ -62,11 +62,11 @@ From SciFiBooks
 
 4. Select the `Id` column as a key.
 
- ![results](/images/2020/sql-data-compare/book_query_in_app.PNG)
+ ![results](/images/2020/sql-data-compare/book_query_in_app.png)
 
 5. Copy the comparison script.
 
- ![results](/images/2020/sql-data-compare/book_query_in_app_copy.PNG)
+ ![results](/images/2020/sql-data-compare/book_query_in_app_copy.png)
 
 6. Run the query in the test database. The output below will be produced.
 
@@ -76,7 +76,7 @@ As we can see, the query has correctly found the following:
 * Ringworld is in `SciFiBooks` but not `Books`.
 * Two rows have discrepancies. The column specific discrepancy tables `Discrepant__Author` and `Discrepant__Title` show one and two discrepancies respectively. 
 
- ![results](/images/2020/sql-data-compare/book_comparison.PNG)
+ ![results](/images/2020/sql-data-compare/book_comparison.png)
 
 ## Advanced Comparisons
 

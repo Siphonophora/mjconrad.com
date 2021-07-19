@@ -14,7 +14,7 @@ When we have a branched model like the one shown here that needs to be loaded by
 
 ## Problem
 
-![](/images/2021/branched-models-efcore-performance/BranchedModel.png)
+![](/images/2021/branched-models-efcore-performance/branchedmodel.png)
 
 To dive into this, lets look at the relatively simple model above and think about an author who had 50 tour appearances and has written 10 books, with an average of 1,000 sales, and 50 reviews each. Total data for our author is 
 
@@ -53,7 +53,7 @@ var author = dbContext.Authors
 
 ## Solution
 
-![](/images/2021/branched-models-efcore-performance/BranchedModelColored.png)
+![](/images/2021/branched-models-efcore-performance/branchedmodelcolored.png)
 
 We can avoid this issue by having Entity Framework Core retrieve our data in steps. Each step can be written without these branching joins. One option is shown below. We can initially retrieve the orange data (Author, Books, Sales), Followed by two separate queries Blue (Tour Dates) and Green (Reviews). These latter two could be run in either order. Note that the syntax for the Tour Dates and Reviews are different, because they are at the child and grandchild levels of the model.
 

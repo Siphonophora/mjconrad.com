@@ -5,16 +5,16 @@ title:  "System Versioning 1 - When is SysStart"
 date:   2020-05-09 09:00:00 -0400
 permalink: blog/system-versioning-1-when-is-sysstart
 header:
-  teaser: /images/2020/system-versioning-1/WhenIsSysStart_square.PNG
+  teaser: /images/2020/system-versioning-1/whenissysstart_square.png
 ---
 
-System versioning was introduced in Sql Server 2016. Its an excellent option for logging changes to data in sensitive systems and as with all complex systems, there some of the details are both important and have interesting consequences. This is the first in a series focusing on the 'fine print' in System Versioning. We will start off with a question that I couldn't find answered in the Microsoft docs, and which got me thinking more about some of the hidden complexities in system versioning.
+System versioning was introduced in SQL Server 2016. Its an excellent option for logging changes to data in sensitive systems and as with all complex systems, there some of the details are both important and have interesting consequences. This is the first in a series focusing on the 'fine print' in System Versioning. We will start off with a question that I couldn't find answered in the Microsoft docs, and which got me thinking more about some of the hidden complexities in system versioning.
 
 When, exactly, is SysStart? 
 
 To be more precise, how are the generated period columns (usually SysStart and SysEnd or PeriodStart and PeriodEnd) populated? 
 
-The sql below can demonstrate what is happening under the hood. The idea is to perform inserts with varying types of transactions, with each insert separated by a one second delay. We use the high precision `SYSUTCDATETIME()` function to so that the `InsertTime` is directly comparable to the period columns.
+The SQL below can demonstrate what is happening under the hood. The idea is to perform inserts with varying types of transactions, with each insert separated by a one second delay. We use the high precision `SYSUTCDATETIME()` function to so that the `InsertTime` is directly comparable to the period columns.
 
 ``` sql
 CREATE TABLE [ExampleTable]  
@@ -66,7 +66,7 @@ Drop table [dbo].[ExampleTableHistory]
 
 This is the produced output:
 
-![](/images/2020/system-versioning-1/Blog1.PNG)
+![](/images/2020/system-versioning-1/blog1.png)
 
 Lets take this one insert at a time. 
 * **Implicit** - The single insert uses an implicit transaction. Its SysStart is almost identical to the `InsertTime`, as expected. I ran this code a few times in order to generate output where they weren't exactly the same. This illustrates that even in the implicit transaction, the timestamp is generated before the row insert.
@@ -79,6 +79,6 @@ If we did some updates or deletes as well, we would see the same rule applies:
 Period Columns are populated using a timestamp which is generated at the beginning of the outermost transaction.
 {: .notice--info} 
 
-This fact results in some of the trickier behavior which can come out of System Versioning. It might be ideal if the timestamp was generated at the close of the transaction, because that is the moment the results are real. However, this is likely impossible. As SqlServer works through a transaction, it has to write transaction logs as it progresses. So from the very beginning of the transaction, it needs to know what values will populate the period columns.
+This fact results in some of the trickier behavior which can come out of System Versioning. It might be ideal if the timestamp was generated at the close of the transaction, because that is the moment the results are real. However, this is likely impossible. As SQL Server works through a transaction, it has to write transaction logs as it progresses. So from the very beginning of the transaction, it needs to know what values will populate the period columns.
 
 In upcoming posts we will dig more into the implications of this for interpreting the period columns and performing 'time travel' queries.

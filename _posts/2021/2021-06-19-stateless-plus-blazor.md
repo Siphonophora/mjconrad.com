@@ -24,7 +24,7 @@ Lets start with some business rules for a simple shopping cart.
 We can model this cart using a Finite State Machine. A diagram for that state machine is shown below (with the ability to add a note in any state removed for clarity).
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/stateless-plus-blazor/UMLStateDiagram.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/stateless-plus-blazor/umlstatediagram.png" alt="">
   <figcaption>Stateless has a helper function which generated the diagraph markup used to generate this image (after some tweaking to the visuals). See their docs for details.</figcaption>
 </figure> 
 

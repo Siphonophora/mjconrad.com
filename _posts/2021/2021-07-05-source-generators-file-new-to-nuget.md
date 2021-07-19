@@ -16,41 +16,41 @@ Screenshots and workflow were developed with `Visual Studio 2019 16.10.2`. I did
 Initially we are going to create two projects `AutoNotify` which will contain our generator and `ConsoleApp` which we will use to test that the generator is working properly. 
  
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_1.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_1.png)
 
 Start by opening Visual Studio.
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_2.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_2.png)
 
 Create a new C# Class Library
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_3.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_3.png)
 
 Named AutoNotify
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_4.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_4.png)
 
 Target .NET Standard 2.0 and click 'Create'
  
 Go ahead and delete the `Class1.cs` file from the library.
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_5.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_5.png)
 
 Using the menu, choose File -> New -> Project. Choose a C# Console App
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_6.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_6.png)
 
 Leave the default name 'ConsoleApp' and click 'Next'
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_7.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_7.png)
 
 For the console which is our client, we can use the Current .NET and click 'Create'.
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_8.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_8.png)
 
 Right click `ConsoleApp` project and choose Add -> Project Reference. Add a reference to the `AutoNotify` project.
  
-![](/images/2021/source-generators-file-new-to-nuget/file_new_9.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/file_new_9.png)
 
 Single click on the `ConsoleApp` project and edit the reference as shown.
  
@@ -76,11 +76,11 @@ Just to make sure everyone is on the same page here.
  
 If everything worked, you should be able to see in the `ConsoleApp` dependencies that we now have our generator showing up as an analyzer, and below that we should see the `AutoNotifyAttribute.cs`.
  
-![](/images/2021/source-generators-file-new-to-nuget/initial_correct_setup.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/initial_correct_setup.png)
  
 If we double click the `AutoNotifyAttribute.cs` we can see the output code, including warnings from Visual Studio that this file isn't editable.
  
-![](/images/2021/source-generators-file-new-to-nuget/autonotifygenerator.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/autonotifygenerator.png)
  
 At this point, we can make use of our generator. By adding a new class `Person`. There are a few things to point out. First, this is a partial class so that the generator can add code to the class in another file. Second, the `using AutoNotify` is referencing the namespace added to `ConsoleApp` by `AutoNotifyAttribute.cs`, not the namespace within our generator project.
  
@@ -99,11 +99,11 @@ namespace ConsoleApp
  
 As soon as we add the `Person` class we will see the new `Person_autoNotify.cs` is created by the generator.
  
-![](/images/2021/source-generators-file-new-to-nuget/setup_3_output_files.PNG)
+![](/images/2021/source-generators-file-new-to-nuget/setup_3_output_files.png)
  
 At this point, I recommend you open your `Person.cs` code side by side with `Person_autoNotify.cs` and do a little experimentation. You should see live updates to the generated code. Just as you see them, the new properties are becoming available and can be used anywhere in your code.
  
-![](/images/2021/source-generators-file-new-to-nuget/Magic.gif)
+![](/images/2021/source-generators-file-new-to-nuget/magic.gif)
  
  
 ## Updating the Generator - Getting Out of Sync
@@ -159,11 +159,11 @@ There is a little bit of a workaround you can do here. Even though this isn't a 
 1. Right click `AutoNotify` -> Properties -> Build Events
 2. Add `dotnet clean "$(SolutionDir)\ConsoleApp\ConsoleApp.csproj"` to the Pre-build event command line.
  
-![](/images/2021/source-generators-file-new-to-nuget/.\outofsync_without_api_change.png)
+![](/images/2021/source-generators-file-new-to-nuget/outofsync_without_api_change.png)
 
 Here our generator is out of sync with our generated code, but there are no API changes. Running the app produces no console output.
  
-![](/images/2021/source-generators-file-new-to-nuget/.\outofsync_without_api_change_after_clean.png)
+![](/images/2021/source-generators-file-new-to-nuget/outofsync_without_api_change_after_clean.png)
 
 After running the solution clean, our generator and generated code are still out of sync, but running the console app works as expected.
  
@@ -175,27 +175,27 @@ If we need to change the API of our generated code or if we want to alter the co
  
 As an example, if we wanted to add "1" as a suffix to every property name (for some reason):
  
-![](/images/2021/source-generators-file-new-to-nuget/.\out_of_sync_1.png)
+![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_1.png)
 
 First we add that suffix. 
  
-![](/images/2021/source-generators-file-new-to-nuget/.\out_of_sync_2.png)
+![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_2.png)
 
 After building, notice how the Visual Studio Error List doesn't know about the errors, but we can see them in the build output.
  
 When we build, we will get a build failure. This is only happening because of the pre-build clean step added above. Without the clean step we wouldn't have gotten the build failure, which I prefer as it is a reminder we have done something that necessitates a restart. 
  
-![](/images/2021/source-generators-file-new-to-nuget/.\out_of_sync_3.png)
+![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_3.png)
 
 As a reminder, our code is still out of date, that property should be `Name1`
  
 After we build the generator and restart visual studio, everything is back in sync. 
 
-![](/images/2021/source-generators-file-new-to-nuget/.\out_of_sync_4_-_after_restart.png)
+![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_4_-_after_restart.png)
 
 Now we get IntelliSense and Errors showing us the build problem.
  
-![](/images/2021/source-generators-file-new-to-nuget/.\out_of_sync_5_-_fixed,_all_better.png)
+![](/images/2021/source-generators-file-new-to-nuget/out_of_sync_5_-_fixed,_all_better.png)
 
 A quick fix to our naming and everything will build and run as expected.
  
