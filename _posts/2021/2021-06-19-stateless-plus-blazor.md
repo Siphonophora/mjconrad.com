@@ -28,8 +28,6 @@ We can model this cart using a Finite State Machine. A diagram for that state ma
   <figcaption>Stateless has a helper function which generated the diagraph markup used to generate this image (after some tweaking to the visuals). See their docs for details.</figcaption>
 </figure> 
 
-Caption -  Stateless has a helper function which generated the diagraph markup used to generate this image (after some tweaking to the visuals).
-
 ``` uml 
 digraph finite_state_machine {
     graph [pad="0.5", nodesep="1", ranksep="1"];
