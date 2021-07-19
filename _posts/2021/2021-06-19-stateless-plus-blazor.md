@@ -24,7 +24,7 @@ Lets start with some business rules for a simple shopping cart.
 We can model this cart using a Finite State Machine. A diagram for that state machine is shown below (with the ability to add a note in any state removed for clarity).
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/stateless-plus-blazor/umlstatediagram.png" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/stateless-plus-blazor/uml-state-diagram.png" alt="">
   <figcaption>Stateless has a helper function which generated the diagraph markup used to generate this image (after some tweaking to the visuals). See their docs for details.</figcaption>
 </figure> 
 
@@ -252,7 +252,7 @@ Wiring Blazor up to use the `CanFire` method is very simple. In this case all we
 To my eye, we are now getting a lot of functionality out of some very simple user interface code. And the best thing is if we change the business rules, such as saying we will no longer allow users to save empty carts, we simply add a new guard clause in the state machine and don't need to make **any** changes in the razor file. Our UI will reflect this change automatically.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/stateless-plus-blazor/UIDemo.gif" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/images/2021/stateless-plus-blazor/uidemo.gif" alt="">
   <figcaption>Demo of UI buttons being driven by Stateless in the Shopping Cart model class.</figcaption>
 </figure> 
 
