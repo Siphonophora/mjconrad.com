@@ -6,8 +6,6 @@ date:   2021-06-17 09:00:00 -0400
 permalink: blog/branched-models-and-efcore-performance
 ---
 
-# Branched Models and EFCore Performance
-
 When we have a branched model like the one shown here that needs to be loaded by Entity Framework Core all at once, we need to consider the size of the model at each level of the hierarchy. Each level of branching we include can cause an exponential increase in the number of rows SQL returns. In my first introduction to this issue, I had a model with about 10 different entities and a few levels of branching. While the total data in the database comprised about 5,000 rows, we found that a single query to return data for the whole model would generate about a 1,000,000,000, yes a billion, rows. I also had the constraint that I couldn't use lazy loading to delay or avoid loading some of the model. All of the related data needed to be used together.
 
 **Below, we will look at how to use eager loading and get good performance with a branching data structure.**
@@ -58,7 +56,7 @@ var author = dbContext.Authors
 We can avoid this issue by having Entity Framework Core retrieve our data in steps. Each step can be written without these branching joins. One option is shown below. We can initially retrieve the orange data (Author, Books, Sales), Followed by two separate queries Blue (Tour Dates) and Green (Reviews). These latter two could be run in either order. Note that the syntax for the Tour Dates and Reviews are different, because they are at the child and grandchild levels of the model.
 
 
-``` C#
+``` csharp
 // Initial non-branching query
 var author = dbContext.Authors
                 .Include(x => x.Books)
@@ -68,7 +66,8 @@ var author = dbContext.Authors
 // Query for child data.
 ctx.Entry(author).Collection(i => i.TourDates).Load();
 
-// For grandchild data We need the Query() to provide an IQueryable so we can call Include()
+// For grandchild data We need the Query() to provide 
+// an IQueryable so we can call Include()
 ctx.Entry(author)
         .Collection(x => x.Books).Query() 
             .Include(x => x.Reviews)
