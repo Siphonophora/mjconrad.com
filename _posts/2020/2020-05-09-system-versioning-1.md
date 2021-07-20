@@ -5,7 +5,7 @@ title:  "System Versioning 1 - When is SysStart"
 date:   2020-05-09 09:00:00 -0400
 permalink: blog/system-versioning-1-when-is-sysstart
 header:
-  teaser: /images/2020/system-versioning-1/whenissysstart_square.png
+  teaser: "/images/2020/system-versioning-1/whenissysstart_square.png"
 ---
 
 System versioning was introduced in SQL Server 2016. Its an excellent option for logging changes to data in sensitive systems and as with all complex systems, there some of the details are both important and have interesting consequences. This is the first in a series focusing on the 'fine print' in System Versioning. We will start off with a question that I couldn't find answered in the Microsoft docs, and which got me thinking more about some of the hidden complexities in system versioning.
