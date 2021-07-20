@@ -6,7 +6,7 @@ date:   2021-08-05 09:00:00 -0400
 permalink: blog/2021/2021-july-reading-list
 ---
 
-Taking a bit of inspiration from the [Jo Walton's Reading List series](https://www.tor.com/tag/jo-walton-reads/)
+Taking a bit of inspiration from the [Jo Walton's Reading List series](https://www.tor.com/tag/jo-walton-reads/), here are some recent things I have read:
 
 ### Maarten Balliauw - [Building a supply chain attack with .NET, NuGet, DNS, source generators, and more!](https://blog.maartenballiauw.be/post/2021/05/05/building-a-supply-chain-attack-with-dotnet-nuget-dns-source-generators-and-more.html)
 
