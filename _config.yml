@@ -127,5 +127,5 @@ include:
 analytics:
   provider: "google-gtag"
   google:
-    tracking_id: "UA-117872325-2"
+    tracking_id: "UA-177872325-2"
     anonymize_ip: true # false is default
