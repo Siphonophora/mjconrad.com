@@ -11,7 +11,7 @@ permalink: /opensource/
 [![NuGet](https://img.shields.io/nuget/v/JUnitXml.TestLogger.svg)](https://www.nuget.org/packages/JUnitXml.TestLogger/)
 
 **SQL Data Compare**: This is a [web utility](https://sqldatacompare.mjconrad.com/) which generates data comparison scripts for SQL Server tables or queries. Example uses include comparing data in across environments or validating that refactoring a query has not altered its output.
-[Source on GitHub](https://github.com/spekt/junit.testlogger)
+[Source on GitHub](https://github.com/Siphonophora/SqlDataCompare)
 
 #### Contributor: 
 
