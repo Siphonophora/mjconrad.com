@@ -34,7 +34,7 @@ I hadn't heard of partition testing before. Though its interesting in that a lot
 
 ### Nick Chapsas 
 
-I have found Nick's [YouTube channel](https://www.youtube.com/channel/UCrkPsvLGln62OMZRO6K-llg) to be consistently interesting since I first ran across it this month. His essential NuGet packages series in particular
+I have found Nick's [YouTube channel](https://www.youtube.com/channel/UCrkPsvLGln62OMZRO6K-llg) to be consistently interesting since I first ran across it this month. His essential NuGet packages series in particular has pointed me to some libraries I hadn't looked into before, that I am planning to try.
 
 * [A different way to return data in C# with OneOf](https://www.youtube.com/watch?v=r7QUivYMS3Q) Discriminated unions in C#, definitely something I want to try using. 
 * [How to work with text in .NET like a pro with Humanizer](https://www.youtube.com/watch?v=bLKXqJwRNSY) Humanizer looks like a really nice way to build up UI text.
