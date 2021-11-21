@@ -20,6 +20,7 @@ In this post, I want to show a prototype of a library (which I'm tentatively cal
 So, lets take the example of this `Author` class, where we want to auto generate encapsulated collection code by using an attribute on a private field. 
 
 ``` csharp
+
 namespace ConsoleClient.Models
 {
     public partial class Author
@@ -77,6 +78,8 @@ In the prototype [Moustache Templates](https://mustache.github.io/mustache.5.htm
 2. Then adds one or more template strings, an mark them with `GobieTemplate`
 3. Then adds a public property `CustomValidator` so a validator method can be supplied. The generator will find `CustomValidator` and use it when rendering the template.
 
+
+{% raw %}
 ``` csharp
 public class EncapulatedCollectionAttribute : GobieFieldGeneratorAttribute
 {
@@ -105,6 +108,7 @@ public class EncapulatedCollectionAttribute : GobieFieldGeneratorAttribute
     public string CustomValidator { get; set; } = null;
 }
 ```
+{% endraw %}
 
 As the dev is creating and updating their templates, they can see in real time how changes to the templates impact the output. Here we see a refactoring of the `Add` method template to define a  `TryAdd` instead.
 
