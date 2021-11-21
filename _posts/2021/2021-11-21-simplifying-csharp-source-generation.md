@@ -2,7 +2,7 @@
 layout: single
 classes: wide
 title:  "Simplifying C# Source Generation"
-date:   2021-08-31 09:00:00 -0400
+date:   2021-11-21 17:00:00 -0400
 permalink: blog/2021/simplifying-csharp-source-generation
 ---
 
