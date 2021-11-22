@@ -130,9 +130,8 @@ analytics:
     tracking_id: "UA-177872325-2"
     anonymize_ip: true # false is default
 
-repository  : Siphonophora/mjconrad.com # Git username/repo-name e.g. "mmistakes/minimal-mistakes"
 comments:
   provider  : "staticman_v2"
   staticman:
     branch    : "main"
-    endpoint  : https://siphonophora-staticman.herokuapp.com/v3/entry/github/Siphonophora/mjconrad.com
+    endpoint  : https://siphonophora-staticman.herokuapp.com/v3/entry/github/
