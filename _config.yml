@@ -132,6 +132,7 @@ analytics:
 
 comments:
   provider  : "staticman_v2"
+  allowedOrigins: ["mjconrad.com"]
   staticman:
     branch    : "main"
     endpoint  : https://siphonophora-staticman.herokuapp.com/v3/entry/github/
