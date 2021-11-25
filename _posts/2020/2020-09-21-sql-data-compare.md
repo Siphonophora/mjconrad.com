@@ -4,6 +4,8 @@ classes: wide
 title:  "Easily Compare any SQL Server Queries or Tables"
 date:   2020-09-21 09:00:00 -0400
 permalink: blog/easily-compare-any-sql-server-queries-or-tables
+header:
+  teaser: /images/2020/sql-data-compare/teaser-500x300.png
 ---
 
 I'm excited to announce that this last week I have released a new project ([source code][project]), which is [hosted here][appURL]. Its a free utility that generates SQL Server scripts to compare the results of any two queries. You then run that comparison script from your client (SQL Server Management Studio, Azure Data Studio...) and are presented with a detailed report of all identical or discrepant records. Notice, that's **queries** we are comparing and not just tables or views. This allows for some interesting capabilities, which differ from how the major commercial data comparison programs work. A few use cases for this tool are outlined below, along with a basic usage example.

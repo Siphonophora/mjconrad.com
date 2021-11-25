@@ -4,6 +4,8 @@ classes: wide
 title:  "Managing Exceptions in BackgroundService or IHostedService Workers"
 date:   2020-12-07 09:00:00 -0400
 permalink: blog/manging-exceptions-in-backgroundservice-or-ihostedservice-workers
+header:
+  teaser: /images/2020/exceptions-in-background-service-workers/teaser-500x300.png
 ---
 
 This post applies to **.Net 5 and before**. .Net 6 introduces a welcome change to exceptions which will be discussed in an upcoming post. 

@@ -4,6 +4,8 @@ classes: wide
 title:  "Serve your github.io site from a subdomain, using Google Domains"
 date:   2020-11-02 09:00:00 -0400
 permalink: blog/serve-your-githubio-site-from-a-subdomain-using-google-domains
+header:
+  teaser: /images/2020/serve-githubio-from-google-subdomain/teaser-500x300.png
 ---
 
 Hosting your github.io site under a custom domain is a great option to make your project look more polished. This post will outline the steps to set up your project under a subdomain, using Google Domains. 

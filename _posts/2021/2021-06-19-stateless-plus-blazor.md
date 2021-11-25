@@ -4,6 +4,8 @@ classes: wide
 title:  "Stateless + Blazor = Easy Integration of UI and Business Logic"
 date:   2021-06-19 09:00:00 -0400
 permalink: blog/stateless-blazor-easy-integration-of-ui-and-business-logic
+header:
+  teaser: /images/2021/stateless-plus-blazor/teaser-500x300.png
 ---
 
 In this post we are going to look at how we can pair [Stateless](https://github.com/dotnet-state-machine/stateless), a simple State Machine library for .Net with Blazor in order to take the pain out of synchronizing your UI with your business logic.

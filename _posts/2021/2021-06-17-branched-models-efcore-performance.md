@@ -4,6 +4,8 @@ classes: wide
 title:  "Branched Models and EFCore Performance"
 date:   2021-06-17 09:00:00 -0400
 permalink: blog/branched-models-and-efcore-performance
+header:
+  teaser: /images/2021/branched-models-efcore-performance/teaser-500x300.png
 ---
 
 When we have a branched model like the one shown here that needs to be loaded by Entity Framework Core all at once, we need to consider the size of the model at each level of the hierarchy. Each level of branching we include can cause an exponential increase in the number of rows SQL returns. In my first introduction to this issue, I had a model with about 10 different entities and a few levels of branching. While the total data in the database comprised about 5,000 rows, we found that a single query to return data for the whole model would generate about a 1,000,000,000, yes a billion, rows. I also had the constraint that I couldn't use lazy loading to delay or avoid loading some of the model. All of the related data needed to be used together.

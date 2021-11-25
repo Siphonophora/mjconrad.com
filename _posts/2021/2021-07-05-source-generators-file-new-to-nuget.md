@@ -4,6 +4,8 @@ classes: wide
 title:  "C# Source Generators - File New to NuGet"
 date:   2021-07-05 09:00:00 -0400
 permalink: blog/csharp-source-generators-file-new-to-nuget
+header:
+  teaser: /images/2021/source-generators-file-new-to-nuget/teaser-500x300.png
 ---
 
  

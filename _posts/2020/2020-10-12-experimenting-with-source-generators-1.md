@@ -4,6 +4,8 @@ classes: wide
 title:  "Experimenting With C# Source Generators - 1 Encapsulated Collections"
 date:   2020-10-12 09:00:00 -0400
 permalink: blog/experimenting-with-csharp-source-generators-1-encapulated-collections
+header:
+  teaser: /images/2020/exceptions-in-background-service-workers/teaser-500x300.png
 ---
 
 Source Generators are a work in progress feature for Roslyn that will allow automatic generation of C# code based on existing code, or external files. From a design perspective, the most important thing to know is the generated source is *additive* only. So this doesn't provide a direct replacement for Fody or PostSharp. If source generators are totally new to you, you can take a look at [the specification](https://github.com/dotnet/roslyn/blob/master/docs/features/source-generators.md) and [some examples](https://github.com/dotnet/roslyn-sdk/tree/master/samples/CSharp/SourceGenerators) from the Roslyn team.

@@ -4,6 +4,8 @@ classes: wide
 title:  "Auto Fix StyleCop Warnings with Free Extensions"
 date:   2020-06-08 09:00:00 -0400
 permalink: blog/auto-fix-stylecop-warnings-with-free-extensions
+header:
+  teaser: /images/2020/auto-fix-stylecop-warnings/teaser-500x300.png
 ---
 
 If you are like me, you like the idea of StyleCop. It helps ensure your code is consistently organized and your diffs are smaller. But the fact is, with standard Visual Studio you end up having to do many fixes by hand. Or, you have to run the auto fix for each warning type individually. This becomes a big problem if you also want to enforce StyleCop warnings (with gated code check-in or a step in your CI build) and want your team to stay happy. Thankfully, there are *free extensions* which can eliminate most of this pain. 
