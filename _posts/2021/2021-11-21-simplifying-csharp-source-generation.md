@@ -20,7 +20,6 @@ In this post, I want to show a prototype of a library (which I'm tentatively cal
 So, lets take the example of this `Author` class, where we want to auto generate encapsulated collection code by using an attribute on a private field. 
 
 ``` csharp
-
 namespace ConsoleClient.Models
 {
     public partial class Author
