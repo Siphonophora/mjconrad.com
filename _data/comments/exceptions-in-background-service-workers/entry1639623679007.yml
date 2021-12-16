@@ -1,0 +1,7 @@
+_id: 70eedbc0-5e1c-11ec-8f56-29cca4bd7563
+message: "@Leonid, \r\n\r\nIt looks like `Task.Yield()` works fine. To test it I took my sample project and added a synchronous wait using `Thread.Sleep(10000)` to the worker. Calling `await Task.Yield()` here: https://github.com/Siphonophora/BackgroundServiceExceptions/blob/test-task-yield/BackgroundServiceExceptions.Core/WorkerBase.cs#L50 allowed the service to finish initializing without waiting for 10 seconds. \r\n\r\nI tried `await Task.CompletedTask` and that version did take the extra 10 seconds to start up."
+name: Mike Conrad
+email: fba609bb74a649781c1480965849f756
+url: 'https://mjconrad.com'
+hidden: ''
+date: 1639623679
