@@ -65,7 +65,7 @@ public async Task StartAsync(CancellationToken cancellationToken = default)
 }
 ```      
 
-Before going further we should two important aspects of how `Task` works. The first thing to understand is that when you start a `Task` it will run synchronously until the called code gets to the an `await`ed method which is not able to return a result immediately (i.e. we are synchronous until we actually have something to wait for). The second is that if an exception occurs, the exception is bundled into the `Task`. At this point `Task.IsCompleted` would be true, and the contents of the `Task` is now the exception, instead of an expected result or void. When the task is `await`ed, the exception is then thrown by the `awiat`. This is how `Task`s propagate exceptions back to the caller, incidentally, explains why `async void` is a bad idea.
+Before going further we should discuss two important aspects of how `Task` works. The first thing to understand is that when you start a `Task` it will run synchronously until the called code gets to the an `await`ed method which is not able to return a result immediately (i.e. we are synchronous until we actually have something to wait for). The second is that if an exception occurs, the exception is bundled into the `Task`. At this point `Task.IsCompleted` would be true, and the contents of the `Task` is now the exception, instead of an expected result or void. When the task is `await`ed, the exception is then thrown by the `await`. This is how `Task`s propagate exceptions back to the caller, incidentally, explains why `async void` is a bad idea.
 
 Lets look at the code below, where we can see this in action. In this example, the following steps occur. 
 1. Log the "Before Starting Task" message
