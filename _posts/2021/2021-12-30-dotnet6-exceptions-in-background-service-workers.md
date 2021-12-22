@@ -8,12 +8,12 @@ header:
   teaser: /images/2021/dotnet6-managing-exceptions-in-backgroundservice-or-ihostedservice-workers/teaser-500x300.png
 ---
 
-This post applies to **.Net 6 and after**. DotNet 6 introduces a welcome change to exceptions which is discussed here. A full discussion of [exception handling in .Net 5 and before is available](/blog/manging-exceptions-in-backgroundservice-or-ihostedservice-workers).
+This post applies to **.Net 6 and after**. DotNet 6 introduces a welcome change to exceptions which is discussed here. A full discussion of [background service exception handling in .Net 5 and before is available](/blog/manging-exceptions-in-backgroundservice-or-ihostedservice-workers).
 {: .notice--warning}
 
 With the breaking change in .Net 6, exception handling is now much more straight forward, so long as you inherit from `BackgroundService`. **If you implement `IHostedService` yourself, then you are not getting any new protections in .Net 6. so be sure to use `BackgroundService`**. By default, if a `BackgroundService` has an unhandled exception, the whole application will now crash. This aligns with our normal expectations, so I expect a bit less confusion around this feature going forward. The other good news is while this is a 'breaking' change, if you were already managing worker exceptions properly, you don't need to do anything new.
 
-BackgroundService and its interface IHostedService allow you to define long running services which can be hosted as a stand alone Windows or Linux Service, or as part of a web app or other application. In this post, we will cover exception handling for hosted services and take a deeper look into how these services are hosted than is covered in the  [documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-6.0&tabs=visual-studio).
+`BackgroundService` and its interface `IHostedService` allow you to define long running services which can be hosted as a stand alone Windows or Linux Service, or as part of a web app or other application. In this post, we will cover exception handling for hosted services and take a deeper look into how these services are hosted than is covered in the  [documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-6.0&tabs=visual-studio).
 
 Before getting to some best practices and a sample implementation, let's take a quick look at the classes and interfaces involved. First is the `IHostedService` interface. As we can see, this defines `StartAsync` and `StopAsync` both of which take cancelation tokens. See the comments in the code for what each token does.
 
@@ -127,16 +127,16 @@ With these examples in mind, lets look at `BackgroundService`.
 
 ### Efficient App Startup
 
-The first advantage is it takes care of ensuring that the call to `IHostedService.StartAsync` returns at the earliest possible moment after starting our code, in our override of `ExecuteAsync`. 
+The first advantage of `BackgroundService` is it takes care of ensuring that the call to `IHostedService.StartAsync` returns at the earliest possible moment after starting our code, in our override of `ExecuteAsync`. 
 
-The way this is accomplished is a bit subtle. Notice that when `ExecuteAsync` is started, but not it is not awaited on line 19. In fact, `BackgroundService` never awaits our code. This makes sense when we remember that `ExecuteAsync` could run forever, so we can't wait for it to finish. The next line checks to see if `ExecuteAsync` is done running which is true, as we discussed above, in two cases:
+The way this is accomplished is a bit subtle. Notice that when `ExecuteAsync` is started, but not it is not awaited on line 19. In fact, `BackgroundService` never awaits our code. This makes sense when we remember that `ExecuteAsync` could run forever, so we can't wait for it to finish during app startup. The next line checks to see if `ExecuteAsync` is done running which is true, as we discussed above, in two cases:
 
 * ExecuteAsync contained only synchronous code and has completed its work. This would be a bad use case for `BackgroundService`, because our code has blocked the rest of the application from starting for the time it was working.
 * More likely, an exception was thrown during the synchronous phase of the `Task`'s execution. In this case, the task is returned to `Host` on line 24. Because `Host` awaited the call to `StartAsync` it opens the `Task` and throws the exception, killing the entire app. In most cases, this isn't what we would want. 
 
 In any case where `ExecuteAsync` successfully started asynchronous operation then `BackroundService` returns a completed dummy task on line 28 back to `Host` which then starts the next IHostedService. 
 
-So, what does that mean for `_executingTask` which is never `await`ed? Its going to keep running as long as it needs to and if it ever throws an exception **we will never know**.
+The `_executingTask` which is never `await`ed within our service is taken care of by the `Host`, which we see in the next section.
 
 ``` csharp
 /// <summary>
@@ -214,7 +214,7 @@ private async Task TryExecuteBackgroundServiceAsync(BackgroundService background
 }
 ```      
 
-Each `BackgroundService` is `await`ed on line 25. Then assuming the `BackgroundServiceExceptionBehavior` is the default of `StopHost` then the whole application will be stopped if the `BackgroundService` throws an exception.
+Each `BackgroundService` is `await`ed on line 25. This way if an exception is thrown by `BackgroundService` then it will be handled within the `Host`. The `Host` always logs the exception. Then if `BackgroundServiceExceptionBehavior` is set to the default of `StopHost` the whole application will be stopped. 
 
 ## Best Practices
 
@@ -232,7 +232,7 @@ Based on what we have seen above, we have some clear objectives when we override
 
 ## Example Implementation
 
-In my experience with workers, we have always been able to write them in a way that they can handle errors and retry safely. So that is how this example is setup. If your worker can't do this then either modify the example or just inherit from `BackgroundService`directly.
+In my experience with workers, we have always been able to write them in a way that they can handle errors and retry safely. So that is how this example is setup. If your worker can't do this then either modify the example or just inherit from `BackgroundService`directly. (Note that if you implement `BackgroundService` you should only override `ExecuteAsync`. Overriding the virtual members are likely to cause problems)
 {: .notice--info}
 
 Below, we will look at an example class, `WorkerBase` which can accomplish all of these objectives for a service that needs to run on a fixed interval (every few seconds, minutes...). This abstract class is setup so that a class which implements it just needs to override `DoWorkAsync`. The override of `DoWorkAsync` should contain all the code that is run periodically, and should throw unhandled exceptions which `WorkerBase` will handle by logging (and starting a back-off or sending alerts if you add that functionality). An associated interface `IWorkerOptions` defines how frequently `DoWorkAsync` is called. Note that the `IWorkerOptions.RepeatIntervalSeconds` is really defining the time between the end of one run, and the beginning of the next. While this implementation is pretty generic, I left in some simple logging that uses `Serilog`. The main reason I did that was to point out the value of setting up the instance logger with `Log.ForContext("Type", WorkerName);`. This means that every log message will contain the name of the class that implements `WorkerBase` which becomes quite valuable if you have more than one service running in parallel.
@@ -394,7 +394,3 @@ services.AddSingleton<ITimeService, TimeService>();
 ```
 
 An [example solution is available](https://github.com/Siphonophora/BackgroundServiceExceptions/tree/dotnet6) which accompanies this post. It includes an example blazor site and worker service which both host the same `TimeFileWorker`.
-
-## Conclusion
-
-Without proper handling, exceptions in `IHostedService` can be difficult to detect. This post discussed why this occurs and provided an example implementation you can use as a starting point to keep your services from silently failing.
