@@ -2,7 +2,7 @@
 layout: single
 classes: wide
 title:  ".Net 6: Managing Exceptions in BackgroundService or IHostedService Workers"
-date:   2021-12-30 09:00:00 -0400
+date:   2021-12-22 09:00:00 -0400
 permalink: blog/dotnet6-managing-exceptions-in-backgroundservice-or-ihostedservice-workers
 header:
   teaser: /images/2021/dotnet6-managing-exceptions-in-backgroundservice-or-ihostedservice-workers/teaser-500x300.png
@@ -232,7 +232,7 @@ Based on what we have seen above, we have some clear objectives when we override
 
 ## Example Implementation
 
-In my experience with workers, we have always been able to write them in a way that they can handle errors and retry safely. So that is how this example is setup. If your worker can't do this then either modify the example or just inherit from `BackgroundService`directly. (Note that if you implement `BackgroundService` you should only override `ExecuteAsync`. Overriding the virtual members are likely to cause problems)
+In my experience with workers, we have always been able to write them in a way that they can handle errors and retry safely. So that is how this example is setup. If your worker can't do this then either modify the example or just inherit from `BackgroundService`directly. (Note that if you implement `BackgroundService` you should only override `ExecuteAsync`. Overriding the virtual members is likely to cause problems)
 {: .notice--info}
 
 Below, we will look at an example class, `WorkerBase` which can accomplish all of these objectives for a service that needs to run on a fixed interval (every few seconds, minutes...). This abstract class is setup so that a class which implements it just needs to override `DoWorkAsync`. The override of `DoWorkAsync` should contain all the code that is run periodically, and should throw unhandled exceptions which `WorkerBase` will handle by logging (and starting a back-off or sending alerts if you add that functionality). An associated interface `IWorkerOptions` defines how frequently `DoWorkAsync` is called. Note that the `IWorkerOptions.RepeatIntervalSeconds` is really defining the time between the end of one run, and the beginning of the next. While this implementation is pretty generic, I left in some simple logging that uses `Serilog`. The main reason I did that was to point out the value of setting up the instance logger with `Log.ForContext("Type", WorkerName);`. This means that every log message will contain the name of the class that implements `WorkerBase` which becomes quite valuable if you have more than one service running in parallel.
