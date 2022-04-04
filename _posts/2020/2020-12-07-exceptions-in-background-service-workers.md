@@ -13,7 +13,7 @@ This post applies to **.Net 5 and before**. .Net 6 introduces a welcome change t
 
 BackgroundService and its interface IHostedService allow you to define long running services which can be hosted as a stand alone Windows or Linux Service, or as part of a web app or other application. In this post, we will cover proper exception handling for hosted services and take a deeper look into how these services are hosted than is covered in the  [documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-3.1&tabs=visual-studio).
 
-Before getting to some best practices and a sample implementation, let's take a quick look at the classes and interfaces involved. First is the `IHostedService` interface. As we can see, this defines `StartAsync` and `StopAsync` both of which take cancelation tokens. See the comments in the code for what each token does.
+Before getting to some best practices and a sample implementation, let's take a quick look at the classes and interfaces involved. First is the `IHostedService` interface. As we can see, this defines `StartAsync` and `StopAsync` both of which take cancellation tokens. See the comments in the code for what each token does.
 
 ``` csharp
 /// <summary>
@@ -245,7 +245,7 @@ public abstract class WorkerBase : BackgroundService
         }
         catch (Exception ex)
         {
-            Logger.Error(ex, "Unhandeled exception. Execution Stopping");
+            Logger.Error(ex, "Unhandled exception. Execution Stopping");
         }
     }
 }
