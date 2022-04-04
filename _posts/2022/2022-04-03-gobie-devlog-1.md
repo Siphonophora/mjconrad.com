@@ -2,7 +2,7 @@
 layout: single
 classes: wide
 title:  "Gobie DevLog 1 - Simple C# Source Generation"
-date:   2022-04-03 22:00:00 -0400
+date:   2022-04-03 20:00:00 -0400
 permalink: blog/2022/gobie-devlog-1
 ---
 
