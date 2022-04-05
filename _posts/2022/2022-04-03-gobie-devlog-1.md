@@ -13,7 +13,7 @@ In [the last post about Gobie](/blog/2021/simplifying-csharp-source-generation) 
 # Updates
 
 * The proof of concept code is now doing all of the intended steps of finding templates / user data and then building the templates.
-* The generator is now an incremental generator. Big thanks to Andrew Lock for [his series](https://andrewlock.net/creating-a-source-generator-part-1-creating-an-incremental-source-generator/) on setting up and testing incremental generators.
+* The generator is now an incremental generator. Big thanks to Andrew Lock for [his blog series](https://andrewlock.net/creating-a-source-generator-part-1-creating-an-incremental-source-generator/) on setting up and testing incremental generators.
 * I spent a lot of time looking at how much feedback we can give to users of the library through complier warnings and errors. I think we can do quite a lot to help users define templates properly. That includes providing diagnostics if the Mustache template sytax is incorrect, or Identifiers are used in the template which are not defined. So I think even though the templates are strings, that we can give more of a compiled code feel to the warnings/errors that might occur. Some initial implementation is done in this direction, but I won't be covering it below.
 
 # Current Status
@@ -22,9 +22,9 @@ Just to be clear, this is currently not usable for anything other than a demo. I
 
 # Demo
 
-This is pretty much the same as the last demo, except that this time the generator is dynamically retrieving everything. We are creating a private List and proving public methods to read/edit the list.
+This is pretty much the same as the last demo, except that this time the generator is dynamically retrieving everything. We are generating a private List field along with public methods to read/edit the list.
 
-The first step we need is to define the Generator we want. Below we can see there are two template strings defined using Mustache like syntax. (It could be just one template if we wanted). And below that are four properties which match the identifiers used in the template strings. 
+The first step we need is to define the Generator we want. Below we can see there are two template strings defined using Mustache like syntax. (In this case it could be just one template if we wanted). And below that are four properties which match the identifiers used in the template strings. 
 
 {% raw %}
 ``` csharp
@@ -69,7 +69,7 @@ The first step we need is to define the Generator we want. Below we can see ther
 ```
 {% endraw %}
 
-Defining the class that inherits from `GobieFieldGenerator` tells the generator to create the market attribute below. In this example we marked all the properties above as `Required` so they have each become constructor args. It isn't shown, but Named Parameters are used for optional properties.
+Defining the class that inherits from `GobieFieldGenerator` tells the generator to create the marker attribute below. In this example the properties above all have the `RequiredAttribute` so they have each become constructor args. It isn't shown, but Named Parameters are used for optional properties.
 
 ``` csharp 
 namespace Gobie
