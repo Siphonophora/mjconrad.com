@@ -6,7 +6,7 @@ date:   2022-04-03 20:00:00 -0400
 permalink: blog/2022/gobie-devlog-1
 ---
 
-In [the last post about Gobie](/blog/2021/simplifying-csharp-source-generation) I outlined how a source generator which relies on user defined templates might work. In this post, I will briefly cover a proof of concept I have put together which is now available on Nuget. All we have at this point is a narrow slice of the functionality that is needed.
+In [the last post about Gobie](/blog/2021/simplifying-csharp-source-generation) I outlined how a source generator which relies on user defined templates might work. In this post, I will briefly cover a proof of concept I have put together which is now available on NuGet. All we have at this point is a narrow slice of the functionality that is needed.
 
 [![NuGet](https://shields.io/nuget/v/Gobie.svg)](https://www.nuget.org/packages/Gobie/)
 
@@ -14,7 +14,7 @@ In [the last post about Gobie](/blog/2021/simplifying-csharp-source-generation) 
 
 * The proof of concept code is now doing all of the intended steps of finding templates / user data and then building the templates.
 * The generator is now an incremental generator. Big thanks to Andrew Lock for [his blog series](https://andrewlock.net/creating-a-source-generator-part-1-creating-an-incremental-source-generator/) on setting up and testing incremental generators.
-* I spent a lot of time looking at how much feedback we can give to users of the library through complier warnings and errors. I think we can do quite a lot to help users define templates properly. That includes providing diagnostics if the Mustache template sytax is incorrect, or Identifiers are used in the template which are not defined. So I think even though the templates are strings, that we can give more of a compiled code feel to the warnings/errors that might occur. Some initial implementation is done in this direction, but I won't be covering it below.
+* I spent a lot of time looking at how much feedback we can give to users of the library through complier warnings and errors. I think we can do quite a lot to help users define templates properly. That includes providing diagnostics if the Mustache template syntax is incorrect, or Identifiers are used in the template which are not defined. So I think even though the templates are strings, that we can give more of a compiled code feel to the warnings/errors that might occur. Some initial implementation is done in this direction, but I won't be covering it below.
 
 # Current Status
 
