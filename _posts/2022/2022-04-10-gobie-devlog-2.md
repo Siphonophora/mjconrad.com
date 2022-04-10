@@ -25,7 +25,7 @@ Just to be clear, this is currently not usable for anything other than a demo. I
 Just like last time we are generating an encapsulated field, but in this case we have a more realistic syntax. The field itself is declared by the user, and annotated with our generator attribute.
 
 We rely on two default parameters `FieldName` and `FieldGenericType` instead of explicitly providing those values. Additionally we use the 
-formatting helpers like `{{ FieldName : pascal}}` which will take the input `books` and output `Books` in the rendered template.
+formatting helpers like {% raw %}`{{ FieldName : pascal}}` which will take the input `books` and output `Books` in the rendered template.
 
 {% raw %}
 ``` csharp
