@@ -5,5 +5,7 @@ main:
     url: https://sqldatacompare.mjconrad.com/
   - title: "Open Source"
     url: /opensource/
+  - title: "My Stack"
+    url: /my-stack/
   - title: "About"
     url: /about/
