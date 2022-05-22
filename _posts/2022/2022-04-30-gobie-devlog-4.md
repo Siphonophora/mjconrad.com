@@ -52,7 +52,7 @@ Its the heavy use of templates plus these drawbacks that lead to this library.
 Here we will look at implementing the functionality above, but I won't spend much more time on why we are generating this specific code. Instead, I want to focus on **how** this is done.
 
 In a several places I have shortened code for legibility. The full source for the templates shown below
-[is available here](https://github.com/Siphonophora/Gobie/blob/459e1177c8cf3a77f1e739e3a47fe63a3aebf830/src/Gobie/ConsoleClient/CompleteExample.cs).
+[is available here](https://github.com/GobieGenerator/Gobie/blob/459e1177c8cf3a77f1e739e3a47fe63a3aebf830/src/Gobie/ConsoleClient/CompleteExample.cs).
 
 ## Define the Marker Attribute
 
@@ -349,8 +349,8 @@ public sealed class EncapsulatedCollectionGenerator : GobieFieldGenerator
 As we have shown above, we have several methods of defining code we want to generate with Gobie. Primarily this covers simple generation where we really just need to fill out a template, though more functionality may make sense to add. How that takes shape will depend on community feedback. 
 
 Again, the full template code we used above
-[is available here](https://github.com/Siphonophora/Gobie/blob/459e1177c8cf3a77f1e739e3a47fe63a3aebf830/src/Gobie/ConsoleClient/CompleteExample.cs).
+[is available here](https://github.com/GobieGenerator/Gobie/blob/459e1177c8cf3a77f1e739e3a47fe63a3aebf830/src/Gobie/ConsoleClient/CompleteExample.cs).
 
 # Feedback
 
-I am very interested in feedback. Feel free to drop a note in the comments here or open an issue with your thoughts in [the project repo](https://github.com/Siphonophora/Gobie).
+I am very interested in feedback. Feel free to drop a note in the comments here or open an issue with your thoughts in [the project repo](https://github.com/GobieGenerator/Gobie).

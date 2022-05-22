@@ -106,4 +106,4 @@ public sealed class AuthorLog
 
 # Feedback
 
-I am very interested in feedback. Feel free to drop a note in the comments here or open an issue with your thoughts in [the project repo](https://github.com/Siphonophora/Gobie)
+I am very interested in feedback. Feel free to drop a note in the comments here or open an issue with your thoughts in [the project repo](https://github.com/GobieGenerator/Gobie)
