@@ -12,6 +12,7 @@ This is an occasionally updated list of tools and libraries I use. I'm skipping 
 * [Show Inline Errors](https://marketplace.visualstudio.com/items?itemName=AlexanderGayko.ShowInlineErrors) Shows compiler errors next to your code, saving you from having to mouse over squiggles or open the error pane all the time.
 * [Code Maid](https://marketplace.visualstudio.com/items?itemName=SteveCadwallader.CodeMaidVS2022) Fixes most trivial formatting issues and saves a ton of time.
 * [Conveyor by Keyoti (free version)](https://marketplace.visualstudio.com/items?itemName=vs-publisher-1448185.ConveyorbyKeyoti) This is critical to my local development work for Xamarin / Maui apps, so those apps can hit APIs on my machine. For that work I haven't needed the paid tier, but it looks like there are some nice features there.
+* [Switch Startup Project](https://marketplace.visualstudio.com/items?itemName=vs-publisher-141975.SwitchStartupProjectForVS2022) This lets you save a configurations for when you want multiple startup projects. If you need to switch between groups of projects much, its a lot nicer than the visual studio option.
 * [CodeRush (paid only)](https://marketplace.visualstudio.com/items?itemName=DevExpress.CodeRushforRoslyn) This is fairly inexpensive and provides some nice refactorings (particularly the ones using caps lock as a modifier). Adding images and some highlighting to comments are nice as well.
 
 ### Visual Studio Code Extensions: 
