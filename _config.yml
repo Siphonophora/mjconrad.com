@@ -130,11 +130,12 @@ analytics:
     tracking_id: "UA-177872325-2"
     anonymize_ip: true # false is default
 
-comments:
-  provider  : "staticman_v2"
-  staticman:
-    branch    : "main"
-    endpoint  : https://siphonophora-staticman.herokuapp.com/v3/entry/github/
+# Temporarily disabled due to excessive spam
+#comments:
+#  provider  : "staticman_v2"
+#  staticman:
+#    branch    : "main"
+#    endpoint  : https://siphonophora-staticman.herokuapp.com/v3/entry/github/
 
 reCaptcha:
   enabled: true
