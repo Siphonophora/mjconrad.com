@@ -275,8 +275,9 @@ public abstract class WorkerBase : BackgroundService
     [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "We catch anything and alert instead of rethrowing")]
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // Await right away so Host Startup can continue.
-        await Task.Delay(10).ConfigureAwait(false);
+        // Awaiting Task.Yield() transitions to asyncronous operation immediatly.
+        // This allows startup to continue without waiting.
+        await Task.Yield();
 
         try
         {
@@ -394,3 +395,8 @@ services.AddSingleton<ITimeService, TimeService>();
 ```
 
 An [example solution is available](https://github.com/Siphonophora/BackgroundServiceExceptions/tree/dotnet6) which accompanies this post. It includes an example blazor site and worker service which both host the same `TimeFileWorker`.
+
+
+------------------------------
+
+* Update 2023-02-01: Changed the recommendation for transitioning quickly to async context during startup from `await Task.Delay(10)` to `await Task.Yield()`. 
